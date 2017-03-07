@@ -23,16 +23,26 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # score([1,1,1,5,1]) => 1150 points
 # score([2,3,4,6,2]) => 0 points
 # score([3,4,5,3,3]) => 350 points
-# score([1,5,1,2,4]) => 250 points
+# score([1,5,1,2,4]) => 250 points 
 #
 # More scoring examples are given in the tests below:
 #
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+                                                              
+  score = 0
+  
+  score += 1000 if (dice.count(1) / 3) == 1
+ 
+  score += (dice.count(5) % 3) * 50
+  score += (dice.count(1) % 3) * 100
+  
+  [2, 3, 4, 5, 6].each do |num|
+    score += num * 100 if (dice.count(num) / 3 ) == 1
+  end
+  score
 end
-
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
@@ -67,8 +77,8 @@ class AboutScoringProject < Neo::Koan
   end
 
   def test_score_of_mixed_is_sum
-    assert_equal 250, score([2,5,2,2,3])
-    assert_equal 550, score([5,5,5,5])
+    assert_equal 250 , score([2,5,2,2,3])
+    assert_equal 550 , score([5,5,5,5])
     assert_equal 1100, score([1,1,1,1])
     assert_equal 1200, score([1,1,1,1,1])
     assert_equal 1150, score([1,1,1,5,1])
