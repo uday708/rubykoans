@@ -29,6 +29,7 @@ def triangle(a, b, c)
   else
 		 return :scalene
 	end
+	
 
   # WRITE THIS CODE
 end

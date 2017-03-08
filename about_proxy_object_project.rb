@@ -15,9 +15,12 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 class Proxy
   def initialize(target_object)
     @object = target_object
+    @@record = []
     # ADD MORE CODE HERE
-  end
 
+  end
+  def message(name)
+    
   # WRITE CODE HERE
 end
 
